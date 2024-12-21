@@ -1,0 +1,61 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: dag-example
+  namespace: tekton-pipelines
+spec:
+  tasks:
+    - name: a
+      taskRef:
+        name: echo-task
+      params:
+      - name: message
+        value: "A"
+    - name: b
+      taskRef:
+        name: echo-task
+      params:
+      - name: message
+        value: "B"
+    - name: c
+      taskRef:
+        name: echo-task
+      params:
+      - name: message
+        value: "C"
+    - name: d
+      taskRef:
+        name: echo-task
+      params:
+      - name: message
+        value: "D"
+      runAfter:
+        - a
+        - b
+    - name: e
+      taskRef:
+        name: echo-task
+      params:
+      - name: message
+        value: "E"
+      runAfter:
+        - d
+        - c
+    - name: f
+      taskRef:
+        name: echo-task
+      params:
+      - name: message
+        value: "F"
+      runAfter:
+        - c
+    - name: g
+      taskRef:
+        name: echo-task
+      params:
+      - name: message
+        value: "G"
+      runAfter:
+        - d
+        - f
+

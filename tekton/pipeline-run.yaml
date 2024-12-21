@@ -1,0 +1,8 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: pipeline-example-
+  namespace: tekton-pipelines
+spec:
+  pipelineRef:
+    name: dag-example

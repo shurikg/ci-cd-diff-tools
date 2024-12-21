@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: echo-task
+  namespace: tekton-pipelines
+spec:
+  params:
+    - name: message
+      type: string
+      description: The message to print
+  steps:
+    - name: echo
+      image: alpine:3.7
+      script: |
+        #!/bin/sh
+        echo "$(params.message)"

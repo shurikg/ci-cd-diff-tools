@@ -1,0 +1,53 @@
+id: dag-example
+namespace: dag
+tasks:
+  - id: dag
+    type: io.kestra.plugin.core.flow.Dag
+    tasks:
+      - task:
+          id: A
+          type: io.kestra.plugin.scripts.shell.Commands
+          commands:
+            - 'echo "The current execution is: {{ execution.id }}"'
+      - task:
+          id: B
+          type: io.kestra.plugin.scripts.shell.Commands
+          commands:
+            - 'echo "The current execution is: {{ execution.id }}"'
+      - task:
+          id: C
+          type: io.kestra.plugin.scripts.shell.Commands
+          commands:
+            - 'echo "The current execution is: {{ execution.id }}"'
+      - task:
+          id: D
+          type: io.kestra.plugin.scripts.shell.Commands
+          commands:
+            - 'echo "The current execution is: {{ execution.id }}"'
+        dependsOn:
+          - A
+          - B
+      - task:
+          id: E
+          type: io.kestra.plugin.scripts.shell.Commands
+          commands:
+            - 'echo "The current execution is: {{ execution.id }}"'
+        dependsOn:
+          - C
+          - D
+      - task:
+          id: F
+          type: io.kestra.plugin.scripts.shell.Commands
+          commands:
+            - 'echo "The current execution is: {{ execution.id }}"'
+        dependsOn:
+          - C
+      - task:
+          id: G
+          type: io.kestra.plugin.scripts.shell.Commands
+          commands:
+            - 'echo "The current execution is: {{ execution.id }}"'
+        dependsOn:
+          - F
+          - D
+
