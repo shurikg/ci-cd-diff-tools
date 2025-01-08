@@ -1,0 +1,54 @@
+name: DAG Example Workflow
+
+on:
+  workflow_dispatch:  # Manual trigger
+  # Add other triggers as needed, e.g.:
+  # push:
+  #   branches: [ main ]
+
+jobs:
+  task-A:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo A
+        run: echo "A"
+
+  task-B:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo B
+        run: echo "B"
+
+  task-C:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo C
+        run: echo "C"
+
+  task-D:
+    needs: [task-A, task-B]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo D
+        run: echo "D"
+
+  task-E:
+    needs: [task-C, task-D]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo E
+        run: echo "E"
+
+  task-F:
+    needs: [task-C]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo F
+        run: echo "F"
+
+  task-G:
+    needs: [task-D, task-F]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo G
+        run: echo "G"
