@@ -11,44 +11,58 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo A
-        run: echo "A"
+        run: |
+          echo "A"
+          sleep 20
 
   task-B:
     runs-on: ubuntu-latest
     steps:
       - name: Echo B
-        run: echo "B"
+        run: |
+          echo "B"
+          sleep 20
 
   task-C:
     runs-on: ubuntu-latest
     steps:
       - name: Echo C
-        run: echo "C"
+        run: |
+          echo "C"
+          sleep 20
 
   task-D:
     needs: [task-A, task-B]
     runs-on: ubuntu-latest
     steps:
       - name: Echo D
-        run: echo "D"
+        run: |
+          echo "D"
+          sleep 20
 
   task-E:
     needs: [task-C, task-D]
     runs-on: ubuntu-latest
     steps:
       - name: Echo E
-        run: echo "E"
+        run: |
+          echo "E"
+          sleep 20
 
   task-F:
     needs: [task-C]
     runs-on: ubuntu-latest
     steps:
       - name: Echo F
-        run: echo "F"
+        run: |
+          echo "F"
+          sleep 20
 
   task-G:
     needs: [task-D, task-F]
     runs-on: ubuntu-latest
     steps:
       - name: Echo G
-        run: echo "G"
+        run: |
+          echo "G"
+          sleep 20
